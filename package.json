@@ -1,0 +1,36 @@
+{
+  "name": "FDchat",
+  "version": "0.0.1",
+  "description": "FairyDwarves chat client",
+  "main": "index.js",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-dojo": "~0.2.0"
+  },
+  "dependencies": {
+    "dojo": "~1.10.4",
+    "jquery": "~2.1.3",
+    "jquery-ui": "~1.10.5",
+    "strophe": "~1.2.0"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FairyDwarves/FDchat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FairyDwarves/FDchat/issues"
+  },
+  "homepage": "https://github.com/FairyDwarves/FDchat"
+}
