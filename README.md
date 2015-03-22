@@ -6,10 +6,13 @@ A chat client app specially designed for our needs
 Install dependencies :
    > npm install
 
-Build App for android :
+Android build and test :
    > cordova platform add android
-   > cordova build --debug
-
-Install on device : 
+   > cordova build --debug android
    > adb install platforms/android/ant-build/MainActivity-debug.apk
 
+Browser build and test :
+   > cordova platform add browser
+   > cordova build --debug browser
+   > firefox platforms/browser/www/index.html
+   
