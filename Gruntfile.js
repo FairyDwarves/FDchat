@@ -3,21 +3,30 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+    watch: {
+      files: '<%= jshint.all %>',
+      scripts: {
+        tasks: ['jshint'],
+        options: {
+          spawn: false,
+        },
       },
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+    },
+    jshint: {
+      all: [
+        'Gruntfile.js',
+        'src/**/*.js'
+      ],
+      options: {
+        jshintrc: '.jshintrc'
       }
     },
     dojo: {
       dist: {
         options: {
-          dojo: 'node_modules/dojo/dojo.js', // Path to dojo.js file in dojo source 
+          dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source 
           load: 'build', // Optional: Utility to bootstrap (Default: 'build') 
-          profile: 'app.profile.js', // Profile for build 
+          profile: 'profiles/app.profile_grunt.js', // Profile for build 
           profiles: [], // Optional: Array of Profiles for build 
           appConfigFile: '', // Optional: Config file for dojox/app 
           package: '', // Optional: Location to search package.json (Default: nothing) 
@@ -35,9 +44,9 @@ module.exports = function(grunt) {
       },
       options: {
         // You can also specify options to be used in all your tasks 
-        dojo: 'node_modules/dojo/dojo.js', // Path to dojo.js file in dojo source 
+        dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source 
         load: 'build', // Optional: Utility to bootstrap (Default: 'build') 
-        profile: 'app.profile.js', // Profile for build 
+        profile: 'profiles/app.profile_grunt.js', // Profile for build 
         profiles: [], // Optional: Array of Profiles for build 
         appConfigFile: '', // Optional: Config file for dojox/app 
         package: '', // Optional: Location to search package.json (Default: nothing) 
@@ -52,16 +61,47 @@ module.exports = function(grunt) {
         // Default: null 
         basePath: ''
       }
+    },
+    stylus: {
+      compile: {
+        options: {
+        },
+        files: {
+          'app/resources/app.css': 'src/app/resources/app.styl',
+        }
+      }
+    },
+    minifyHtml: {
+        options: {
+            cdata: true
+        },
+        dist: {
+            files: {
+                'release/index.html': 'src/index.html'
+            }
+        }
+    },
+    cordova_cli: {
+      options: {
+        cmd : 'build',
+        options : [ '--debug' ],
+        platforms : [ 'android' ]
+      },
+      your_target: {
+        // Target-specific file lists and/or options go here. 
+      },
     }
   });
   
-  // Load the plugin that provides dojo build
+  // Load the plugins that provides more tasks.
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-dojo');
-
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-minify-html');
+  grunt.loadNpmTasks('grunt-cordova-cli');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['jshint']);
 
 };
