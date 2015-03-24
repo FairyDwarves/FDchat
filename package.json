@@ -2,6 +2,7 @@
   "name": "FDchat",
   "version": "0.0.1",
   "description": "FairyDwarves chat client",
+  "license": "BSD-3-Clause",
   "main": "index.js",
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -11,6 +12,8 @@
     "grunt-dojo": "~0.2.0"
   },
   "dependencies": {
+    "intern": "2.0.3",
+    "stylus": "0.48.1",
     "dojo": "~1.10.4",
     "jquery": "~2.1.3",
     "jquery-ui": "~1.10.5",
@@ -32,5 +35,7 @@
   "bugs": {
     "url": "https://github.com/FairyDwarves/FDchat/issues"
   },
+  "keywords": [ "JavaScript", "Dojo", "FairyDwarves", "Chat" ],
   "homepage": "https://github.com/FairyDwarves/FDchat"
 }
+
