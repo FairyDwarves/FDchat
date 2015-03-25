@@ -4,7 +4,7 @@
 A chat client app specially designed for our needs
 
 Prerequisites :
-You need npm, bower, and cordova installed.
+You need npm, bower, grunt-cli and cordova installed.
 
 Install npm (on Debian-based Linux): 
    > sudo apt-get install npm

@@ -123,7 +123,18 @@ module.exports = function(grunt) {
     
     //process html files to customize depending environments
     processhtml: {
-      build: {
+      CDN: {
+        options: {
+            dojoConfig: "app/dojoConfig.cdn.js"
+        }
+        files: {
+          'www/index.proc.html': ['src/index.html']
+        }
+      }
+      local: {
+        options: {
+            dojoConfig: "app/dojoConfig.js"
+        }
         files: {
           'www/index.proc.html': ['src/index.html']
         }
@@ -216,7 +227,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('hint', ['jshint']);
   
-  grunt.registerTask('build', ['jshint', 'clean:build', 'dojo', 'stylus', 'processhtml', 'minifyHtml']);
+  grunt.registerTask('build', ['jshint', 'clean:build', 'dojo', 'stylus', 'processhtml:local', 'minifyHtml']);
   
   grunt.registerTask('deploy', 'Deploys the built application', function(origin) {
   
@@ -225,6 +236,8 @@ module.exports = function(grunt) {
      // do something useful with target here
   
      if (ori == 'src') {
+         grunt.task.run('processhtml:CDN');
+         grunt.task.run('minifyHtml');
          grunt.task.run('gh-pages');
      }
      else if (ori == 'build' || ori == 'www') {
