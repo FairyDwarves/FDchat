@@ -224,10 +224,10 @@ module.exports = function(grunt) {
      var target = grunt.option('target') || 'browser';
      // do something useful with target here
   
-     if (origin == 'src') {
+     if (ori == 'src') {
          grunt.task.run('gh-pages');
      }
-     if (origin == 'build' || origin == 'www') {
+     else if (ori == 'build' || ori == 'www') {
         grunt.task.run('build');
         grunt.task.run('clean:finalize');
         
@@ -247,10 +247,6 @@ module.exports = function(grunt) {
             grunt.task.run('cordova_cli:build-ios');
         }
         
-     }
-     else {
-        grunt.warn('Build origin must be specified, like build:src.');
-        grunt.warn('Origins : [ src, <build|www> ]');
      }
   });
 
