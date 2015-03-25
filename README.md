@@ -5,10 +5,19 @@ A chat client app specially designed for our needs
 
 Install dependencies :
    > npm install
+   > bower install
+
+Web test from source (with livereload) :
+   > grunt serve
+
+Deploy from source for online test : [NOT TESTED YET]
+   > grunt deploy
+   
+Web build :
+   > grunt build
 
 Android build and test :
-   > cordova platform add android
-   > cordova build --debug android
+   > grunt cordova
    > adb install platforms/android/ant-build/MainActivity-debug.apk
 
 Browser build and test :

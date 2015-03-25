@@ -3,9 +3,22 @@
 <head>
 	<meta charset="utf-8">
 	<title>Dojo Boilerplate</title>
+	
+	
+    <!-- dependency styles from CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- build:remove -->
+    <!-- put here CSS URI for test to work (before build) -->
+    <link rel="stylesheet" type="text/css" href="//esri.github.io/bootstrap-map-js/dist/css/bootstrapmap.min.css">
+    <!-- /build -->
+    
 	<!-- Application-specific CSS should be stored in your application’s package to ensure portability and to allow
 	     the build system to combine & minify it. -->
+    <!-- build:[href] app/resources/main.css -->
+    <!-- put here CSS URI for final version to work (after build) -->
 	<link rel="stylesheet" href="app/resources/app.css">
+    <!-- /build -->
+
 </head>
 <body class="claro">
 	<!-- It's important to get something displayed to users as quickly as possible; here, we show a very basic loading
@@ -20,8 +33,9 @@
 
 	     NOTE: `build.sh` is responsible for removing the "isDebug" flag when deploying to production. If you modify
 	     this flag at all, you will break the build! -->
+	<!-- build:remove -->
 	<script>
-		var dojoConfig = {
+		window.dojoConfig = {
 			// Enable the AMD loader
 			async: true,
 			// Define the base URL for all of our modules and packages
@@ -47,7 +61,12 @@
 			tlmSiblingOfDojo: false
 		};
 	</script>
-	<script src="dojo/dojo.js"></script>
+	<!-- /build -->
+	    
+	<!-- build:[src] dojo/dojo.js -->
+    <script src="//js.arcgis.com/3.13"></script>
+    <!-- /build -->
+
 	<!-- Load the application. Note that this module ID is hard-coded in build.sh in order to provide
 	     an optimised build that loads as few as one script for the entire application. If you change the name or
 	     location of this module, you will need to update build.sh too. -->

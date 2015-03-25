@@ -4,6 +4,7 @@
  * application itself are stored in the `profiles` directory.
  */
 
+/* exported profile */
 var profile = {
 	// Resource tags are functions that provide hints to the build system about the way files should be processed.
 	// Each of these functions is called once for every file in the package directory. The first argument passed to
