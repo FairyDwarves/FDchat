@@ -152,14 +152,51 @@ module.exports = function(grunt) {
     
     //build mobile app with cordova
     cordova_cli: {
-      options: {
-        cmd : 'build',
-        options : [ '--debug' ],
+      'add-android': {
+        cmd : 'add',
+        plugins : [ 'platform' ],
         platforms : [ 'android' ]
       },
-      your_target: {
-        // Target-specific file lists and/or options go here.
+      'add-ios': {
+        cmd : 'add',
+        plugins : [ 'platform' ],
+        platforms : [ 'ios' ]
       }
+      'add-browser': {
+        cmd : 'add',
+        plugins : [ 'platform' ],
+        platforms : [ 'ios' ]
+      }
+      'build-android': {
+        cmd : 'build',
+        options : '--debug',
+        platforms : [ 'android' ]
+      },
+      'build-ios': {
+        cmd : 'build',
+        options : '--debug',
+        platforms : [ 'ios' ]
+      },
+      'build-browser': {
+        cmd : 'build',
+        options : '--debug',
+        platforms : [ 'ios' ]
+      },      
+      'build-android-release': {
+        cmd : 'build',
+        options : '--release',
+        platforms : [ 'android' ]
+      },
+      'build-ios-release': {
+        cmd : 'build',
+        options : '--release',
+        platforms : [ 'ios' ]
+      },
+      'build-browser-release': {
+        cmd : 'build',
+        options : '--release',
+        platforms : [ 'ios' ]
+      },      
     }    
 
   });   
@@ -180,18 +217,53 @@ module.exports = function(grunt) {
   grunt.registerTask('hint', ['jshint']);
   
   grunt.registerTask('build', ['jshint', 'clean:build', 'dojo', 'stylus', 'processhtml', 'minifyHtml']);
+  
+  grunt.registerTask('deploy', 'Deploys the built application', function(origin) {
+  
+     var ori = origin || 'src';
+     var target = grunt.option('target') || 'browser';
+     // do something useful with target here
+  
+     if (origin == 'src') {
+         grunt.task.run('gh-pages');
+     }
+     if (origin == 'build' || origin == 'www') {
+        grunt.task.run('build');
+        grunt.task.run('clean:finalize');
+        
+        if( target == 'browser' )
+        {
+            grunt.task.run('cordova_cli:add-browser');
+            grunt.task.run('cordova_cli:build-browser');
+        }
+        else if( target == 'android' )
+        {
+            grunt.task.run('cordova_cli:add-android');
+            grunt.task.run('cordova_cli:build-android');
+        }
+        else if( target == 'ios' )
+        {
+            grunt.task.run('cordova_cli:add-ios');
+            grunt.task.run('cordova_cli:build-ios');
+        }
+        
+     }
+     else {
+        grunt.warn('Build origin must be specified, like build:src.');
+        grunt.warn('Origins : [ src, <build|www> ]');
+     }
+  });
 
-  grunt.registerTask('deploy', ['gh-pages']);
-
-  grunt.registerTask('default', ['jshint']);
-
-  grunt.registerTask('serve', function (target) {
-    var trgt = target || 'src';
+  grunt.registerTask('serve', function (origin) {
+    var ori = origin || 'src';
     grunt.task.run([
       'jshint',
-      'connect:' + trgt,
-      'open:' + trgt,
+      'connect:' + ori,
+      'open:' + ori,
       'watch'
     ]);
   });
+  
+  grunt.registerTask('default', ['jshint']);
+  
 };
