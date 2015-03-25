@@ -161,12 +161,12 @@ module.exports = function(grunt) {
         cmd : 'add',
         plugins : [ 'platform' ],
         platforms : [ 'ios' ]
-      }
+      },
       'add-browser': {
         cmd : 'add',
         plugins : [ 'platform' ],
         platforms : [ 'ios' ]
-      }
+      },
       'build-android': {
         cmd : 'build',
         options : '--debug',

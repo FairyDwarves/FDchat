@@ -21,25 +21,25 @@ Install dependencies :
    > bower install
 
 Web test from source (with livereload) :
-   > grunt serve:src
+   > grunt serve
 
-Deploy from source for online test : [NOT TESTED YET]
-   > grunt deploy:src
+Deploy from source for online test on http://fairydwarves.github.io/FDchat : [NOT TESTED YET]
+   > grunt deploy
    
 Web build :
    > grunt build
 
 Web test from build (with livereload) :
-   > grunt serve:www
+   > grunt serve:build
 
 Browser debug build and test :
-   > grunt deploy:www
+   > grunt deploy:build
    > firefox platforms/browser/www/index.html
 
 Android debug build and test :
-   > grunt deploy:www --target=android
+   > grunt deploy:build --target=android
    > adb install platforms/android/ant-build/MainActivity-debug.apk
 
-iOS build an test : [NOT TESTED YET]
+iOS build and test : [NOT TESTED YET]
 
    
