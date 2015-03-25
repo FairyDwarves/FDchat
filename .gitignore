@@ -1,3 +1,14 @@
-node_modules/
-platforms/
+node_modules
+bower_components
+src/dijit
+src/dojo
+src/dojox
+src/util
+src/dgrid
+src/put-selector
+src/xstyle
+src/dojo-bootstrap
+src/spinjs
+.grunt
+platforms
 www

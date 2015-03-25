@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'src/**/*.js'
+        'src/app/**/*.js'
       ],
       options: {
         jshintrc: '.jshintrc'
@@ -24,42 +24,44 @@ module.exports = function(grunt) {
     dojo: {
       dist: {
         options: {
-          dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source 
-          load: 'build', // Optional: Utility to bootstrap (Default: 'build') 
-          profile: 'profiles/app.profile_grunt.js', // Profile for build 
-          profiles: [], // Optional: Array of Profiles for build 
-          appConfigFile: '', // Optional: Config file for dojox/app 
-          package: '', // Optional: Location to search package.json (Default: nothing) 
-          packages: [], // Optional: Array of locations of package.json (Default: nothing) 
-          require: '', // Optional: Module to require for the build (Default: nothing) 
-          requires: [], // Optional: Array of modules to require for the build (Default: nothing) 
-          action: '', // Optional: Build action, release, help. clean has been deprecated. 
-          cwd: './', // Directory to execute build within 
-          dojoConfig: '', // Optional: Location of dojoConfig (Default: null), 
-          // Optional: Base Path to pass at the command line 
-          // Takes precedence over other basePaths 
-          // Default: null 
-          basePath: ''
+          dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source
+          load: 'build', // Optional: Utility to bootstrap (Default: 'build')
+          profile: 'profiles/app.profile_grunt.js', // Profile for build
+          profiles: [], // Optional: Array of Profiles for build
+          appConfigFile: '', // Optional: Config file for dojox/app
+          package: '', // Optional: Location to search package.json (Default: nothing)
+          packages: [], // Optional: Array of locations of package.json (Default: nothing)
+          require: '', // Optional: Module to require for the build (Default: nothing)
+          requires: [], // Optional: Array of modules to require for the build (Default: nothing)
+          action: '', // Optional: Build action, release, help. clean has been deprecated.
+          cwd: './', // Directory to execute build within
+          dojoConfig: '', // Optional: Location of dojoConfig (Default: null),
+          // Optional: Base Path to pass at the command line
+          // Takes precedence over other basePaths
+          // Default: null
+          basePath: '',
+          releaseDir: '../www'
         }
       },
       options: {
-        // You can also specify options to be used in all your tasks 
-        dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source 
-        load: 'build', // Optional: Utility to bootstrap (Default: 'build') 
-        profile: 'profiles/app.profile_grunt.js', // Profile for build 
-        profiles: [], // Optional: Array of Profiles for build 
-        appConfigFile: '', // Optional: Config file for dojox/app 
-        package: '', // Optional: Location to search package.json (Default: nothing) 
-        packages: [], // Optional: Array of locations of package.json (Default: nothing) 
-        require: '', // Optional: Module to require for the build (Default: nothing) 
-        requires: [], // Optional: Array of modules to require for the build (Default: nothing) 
-        action: '', // Optional: Build action, release, help. clean has been deprecated. 
-        cwd: './', // Directory to execute build within 
-        dojoConfig: '', // Optional: Location of dojoConfig (Default: null), 
-        // Optional: Base Path to pass at the command line 
-        // Takes precedence over other basePaths 
-        // Default: null 
-        basePath: ''
+        // You can also specify options to be used in all your tasks
+        dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source
+        load: 'build', // Optional: Utility to bootstrap (Default: 'build')
+        profile: 'profiles/app.profile_grunt.js', // Profile for build
+        profiles: [], // Optional: Array of Profiles for build
+        appConfigFile: '', // Optional: Config file for dojox/app
+        package: '', // Optional: Location to search package.json (Default: nothing)
+        packages: [], // Optional: Array of locations of package.json (Default: nothing)
+        require: '', // Optional: Module to require for the build (Default: nothing)
+        requires: [], // Optional: Array of modules to require for the build (Default: nothing)
+        action: '', // Optional: Build action, release, help. clean has been deprecated.
+        cwd: './', // Directory to execute build within
+        dojoConfig: '', // Optional: Location of dojoConfig (Default: null),
+        // Optional: Base Path to pass at the command line
+        // Takes precedence over other basePaths
+        // Default: null
+        basePath: '',
+        releaseDir: '../www'
       }
     },
     stylus: {
@@ -77,7 +79,7 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                'release/index.html': 'src/index.html'
+                'www/index.html': 'src/index.html'
             }
         }
     },
@@ -88,11 +90,11 @@ module.exports = function(grunt) {
         platforms : [ 'android' ]
       },
       your_target: {
-        // Target-specific file lists and/or options go here. 
+        // Target-specific file lists and/or options go here.
       },
     }
   });
-  
+
   // Load the plugins that provides more tasks.
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
