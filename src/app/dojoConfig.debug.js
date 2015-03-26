@@ -1,3 +1,4 @@
+/* exported dojoConfig */
 var dojoConfig = {
 	// Enable the AMD loader
 	async: true,

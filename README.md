@@ -6,40 +6,58 @@ A chat client app specially designed for our needs
 Prerequisites :
 You need npm, bower, grunt-cli and cordova installed.
 
-Install npm (on Debian-based Linux): 
-   > sudo apt-get install npm
+Install nodejs and npm :
+Follow [Installing Node.js via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) 
 
-Install bower and cordova globally :
-   > sudo npm install -g bower cordova
+Install bower, grunt-cli and cordova globally :
+```
+$ sudo npm install -g bower cordova grunt-cli
+```
 
 Fork and Clone this repository.
-   > git clone http://github.com/FairyDwarves/FDchat.git
-   > cd FDchat
+```
+$ git clone http://github.com/FairyDwarves/FDchat.git
+$ cd FDchat
+```
    
 Install dependencies :
-   > npm install
-   > bower install
+```
+$ npm install
+$ bower install
+```
 
 Web test from source (with livereload) :
-   > grunt serve
+```
+$ grunt serve
+```
 
 Deploy from source for online test on http://fairydwarves.github.io/FDchat : [NOT TESTED YET]
-   > grunt deploy
+```
+$ grunt deploy
+```
    
 Web build :
-   > grunt build
+```
+$ grunt build
+```
 
 Web test from build (with livereload) :
-   > grunt serve:build
+```
+$ grunt serve:build
+```
 
 Browser debug build and test :
-   > grunt deploy:build
-   > firefox platforms/browser/www/index.html
+```
+$ grunt deploy:build
+$ firefox platforms/browser/www/index.html
+```
 
 Android debug build and test :
-   > grunt deploy:build --target=android
-   > adb install platforms/android/ant-build/MainActivity-debug.apk
+```
+$ grunt deploy:build --target=android
+$ adb install platforms/android/ant-build/MainActivity-debug.apk
+```
 
 iOS build and test : [NOT TESTED YET]
 
-   
+

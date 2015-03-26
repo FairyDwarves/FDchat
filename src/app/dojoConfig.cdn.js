@@ -1,3 +1,4 @@
+/* exported dojoConfig */
 var dojoConfig = {
 	// Enable the AMD loader
 	async: true,
@@ -10,12 +11,25 @@ var dojoConfig = {
 	packages: [
 		// Using a string as a package is shorthand for `{ name: 'app', location: 'app' }`
 		'app',
-		'dgrid',
-		'dijit',
-		'dojo',
-		'dojox',
-		'put-selector',
-		'xstyle'
+		{
+		    name: 'dijit',
+		    location: '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/dijit.js'
+		}, {
+		    name: 'dojo',
+		    location: '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js'
+		}, {
+		    name: 'dojox',
+		    location: '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojox/dojox.js'
+		}, {
+            name: 'dgrid',
+            location: '//cdn.rawgit.com/SitePen/dgrid/v0.3.16'
+        }, {
+            name: 'xstyle',
+            location: '//cdn.rawgit.com/kriszyp/xstyle/v0.2.1'
+        }, {
+            name: 'put-selector',
+            location: '//cdn.rawgit.com/kriszyp/put-selector/v0.3.5'
+        }
 	],
 	// Use the smaller, faster "lite" CSS selector engine, which works in all browsers IE8+
 	selectorEngine: 'lite',
