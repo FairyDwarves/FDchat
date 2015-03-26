@@ -128,7 +128,7 @@ module.exports = function (grunt) {
                     dojoConfig: "app/dojoConfig.cdn.js"
                 },
                 files: {
-                    'www/index.proc.html': ['src/index.html']
+                    'src/index.proc.html': ['src/index.html']
                 }
             },
             local: {
@@ -141,12 +141,25 @@ module.exports = function (grunt) {
             }
         },
 
+        copy: {
+          options: {},
+          backupindex: {
+            'src/index.html.bkp': ['src/index.html']
+          },
+          restoreindex: {
+            'src/index.html': ['src/index.html.bkp']
+          },
+          procindex: {
+            'src/index.html': ['src/index.proc.html']
+          }
+        },
+
         //minify html files
         minifyHtml: {
             options: {
                 cdata: true
             },
-            dist: {
+            local: {
                 files: {
                     'www/index.html': 'www/index.proc.html'
                 }
@@ -223,6 +236,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-minify-html');
+    grunt.loadNpmTasks('grunt-copy');
     grunt.loadNpmTasks('grunt-cordova-cli');
 
     grunt.registerTask('hint', ['jshint']);
@@ -237,8 +251,10 @@ module.exports = function (grunt) {
 
         if (ori == 'src') {
             grunt.task.run('processhtml:CDN');
-            grunt.task.run('minifyHtml');
+            grunt.task.run('copy:backupindex');
+            grunt.task.run('copy:procindex');
             grunt.task.run('gh-pages');
+            grunt.task.run('copy:restoreindex');
         }
         else if (ori == 'build' || ori == 'www') {
             grunt.task.run('build');
