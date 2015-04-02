@@ -79,7 +79,7 @@ module.exports = function (grunt) {
             // clean useless file on production environment.
             final: ['www/**/*.consoleStripped.js', 'www/**/*.uncompressed.js', 'www/**/*.js.map', 'www/app/resources/*.styl', 'www/*.proc.html'],
             // clean bower packages
-            bower: ['src/dijit', 'src/dojo', 'src/dgrid', 'src/dojo-bootstrap', 'src/dojox', 'src/put-selector', 'src/util', 'src/xstyle'],
+            bower: ['src/dijit', 'src/dojo', 'src/dgrid', 'src/dojo-bootstrap', 'src/dojox', 'src/put-selector', 'src/util', 'src/xstyle', 'src/bootstrap', 'src/jquery'],
         },
 
         //build dojo
@@ -151,13 +151,16 @@ module.exports = function (grunt) {
             filter: 'isFile'
           },
           backupindex: {
-            'src/index.html.bkp': ['src/index.html']
+            src: 'src/index.html',
+            dest : 'src/index.html.bkp'
           },
           restoreindex: {
-            'src/index.html': ['src/index.html.bkp']
+            src: 'src/index.html.bkp',
+            dest: 'src/index.html'
           },
           procindex: {
-            'src/index.html': ['src/index.proc.html']
+            src: 'src/index.proc.html',
+            dest: 'src/index.html'
           }
         },
 
