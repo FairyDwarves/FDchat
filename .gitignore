@@ -8,6 +8,8 @@ src/dgrid
 src/put-selector
 src/xstyle
 src/dojo-bootstrap
+src/bootstrap
+src/jquery
 src/spinjs
 .grunt
 platforms

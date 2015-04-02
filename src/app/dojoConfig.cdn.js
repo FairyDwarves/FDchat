@@ -29,6 +29,9 @@ var dojoConfig = {
         }, {
             name: 'put-selector',
             location: '//cdn.rawgit.com/kriszyp/put-selector/v0.3.5'
+        }, {
+            name: 'dojo-bootstrap',
+            location: '//rawgit.com/xsokev/Dojo-Bootstrap/master'
         }
 	],
 	// Use the smaller, faster "lite" CSS selector engine, which works in all browsers IE8+

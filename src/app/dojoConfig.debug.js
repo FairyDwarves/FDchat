@@ -16,7 +16,8 @@ var dojoConfig = {
 		'dojo',
 		'dojox',
 		'put-selector',
-		'xstyle'
+		'xstyle',
+		'dojo-bootstrap'
 	],
 	// Use the smaller, faster "lite" CSS selector engine, which works in all browsers IE8+
 	selectorEngine: 'lite',

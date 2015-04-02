@@ -143,6 +143,13 @@ module.exports = function (grunt) {
 
         copy: {
           options: {},
+          bootstrap: {
+            src: ['**/*', '!js/**'],
+            expand: true,
+            cwd: 'src/bootstrap/dist',
+            dest: 'www/bootstrap',
+            filter: 'isFile'
+          },
           backupindex: {
             'src/index.html.bkp': ['src/index.html']
           },
@@ -241,7 +248,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('hint', ['jshint']);
 
-    grunt.registerTask('build', ['jshint', 'clean:build', 'dojo', 'stylus', 'processhtml:local', 'minifyHtml']);
+    grunt.registerTask('build', ['jshint', 'clean:build', 'dojo', 'copy:bootstrap', 'stylus', 'processhtml:local', 'minifyHtml:local']);
 
     grunt.registerTask('deploy', 'Deploys the built application', function (origin) {
 
