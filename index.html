@@ -12,15 +12,24 @@
 	<!-- build:remove -->
 	<title>Dojo Boilerplate Debug</title>
 	<!-- /build -->
-	
-	
-    <!-- dependency styles from CDN -->
+		
+	<!-- build:template
+    <% if (environment === 'CDN') { %>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <% } else { %>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <% } %>
+    /build --> 
+	<!-- build:remove -->
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
+	<!-- /build -->
+	
+	
     
-	<!-- Application-specific CSS should be stored in your application’s package to ensure portability and to allow
-	     the build system to combine & minify it. -->
     <!-- build:[href] app/resources/app.css -->
-    <!-- put here CSS URI for final version to work (after build) -->
 	<link rel="stylesheet" href="app/resources/app.css">
     <!-- /build -->
 
@@ -48,7 +57,7 @@
 	<!-- /build -->
 	
 	<!-- other URL : //cdnjs.cloudflare.com/ajax/libs/dojo/1.10.4/dojo.js -->
-	<!-- build:[src]:CDN "//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" -->
+	<!-- build:[src]:CDN //ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js -->
     <script src="dojo/dojo.js"></script>
     <!-- /build -->
 
