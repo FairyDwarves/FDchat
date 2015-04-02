@@ -86,7 +86,7 @@ module.exports = function (grunt) {
         dojo: {
             dist: {
                 options: {
-                    profile: 'profiles/app.profile_grunt.js', // Profile for build
+                    profile: 'profiles/app.profile.js', // Profile for build
                 }
             },
             options: {
