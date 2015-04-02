@@ -2,36 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<!-- build:template
-    <% if (environment === 'CDN') { %>
-    <title>Dojo Boilerplate CDN version</title>
-    <% } else { %>
-    <title>Dojo Boilerplate</title>
-    <% } %>
-    /build --> 
-	<!-- build:remove -->
-	<title>Dojo Boilerplate Debug</title>
-	<!-- /build -->
-		
-	<!-- build:template
-    <% if (environment === 'CDN') { %>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <% } else { %>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-    <% } %>
-    /build --> 
-	<!-- build:remove -->
-	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
-	<!-- /build -->
-	
+	<title>Dojo Boilerplate CDN version</title>		
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">	
 	
     
-    <!-- build:[href] app/resources/app.css -->
 	<link rel="stylesheet" href="app/resources/app.css">
-    <!-- /build -->
 
 </head>
 <body class="claro">
@@ -45,21 +21,9 @@
 	     Configuration options for the loader can be viewed at http://dojotoolkit.org/reference-guide/loader/amd.html
 	     along with a bunch of additional information about its features.
      
-    <!-- build:template
-    <% if (environment === 'CDN') { %>
-    <script type="text/javascript" src="app/dojoConfig.cdn.js"></script>
-    <% } else { %>
-    <script type="text/javascript" src="app/dojoConfig.js"></script>
-    <% } %>
-    /build --> 
-	<!-- build:remove -->
-	<script type="text/javascript" src="app/dojoConfig.debug.js"></script>
-	<!-- /build -->
-	
+    <script type="text/javascript" src="app/dojoConfig.cdn.js"></script>	
 	<!-- other URL : //cdnjs.cloudflare.com/ajax/libs/dojo/1.10.4/dojo.js -->
-	<!-- build:[src]:CDN //ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js -->
-    <script src="dojo/dojo.js"></script>
-    <!-- /build -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
 
 	<!-- Load the application. Note that this module ID is hard-coded in build.sh in order to provide
 	     an optimised build that loads as few as one script for the entire application. If you change the name or
@@ -67,3 +31,4 @@
 	<script>require([ 'app/main' ]);</script>
 </body>
 </html>
+.
