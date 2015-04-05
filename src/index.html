@@ -2,15 +2,20 @@
 <html>
 <head>
 	<meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    
 	<!-- build:template
     <% if (environment === 'CDN') { %>
-    <title>Dojo Boilerplate CDN version</title>
+    <title>Hello World CDN version</title>
     <% } else { %>
-    <title>Dojo Boilerplate</title>
+    <title>Hello World</title>
     <% } %>
     /build --> 
 	<!-- build:remove -->
-	<title>Dojo Boilerplate Debug</title>
+	<title>Hello World</title>
 	<!-- /build -->
 		
 	<!-- build:template
@@ -32,6 +37,19 @@
     <!-- build:[href] app/resources/app.css -->
 	<link rel="stylesheet" href="app/resources/app.css">
     <!-- /build -->
+
+
+        <link rel="stylesheet" type="text/css" href="app/resources/index.css" />
+       
+        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/cupertino/jquery-ui.css'>
+        <script src='jquery/dist/jquery.js'></script>
+        <script src='jquery-ui/jquery-ui.js'></script>
+        <script src='strophe/strophe.js'></script>
+        <script src='app/flXHR.js'></script>
+        <script src='app/strophe.flxhr.js'></script>
+        
+        <script src='app/hello.js'></script>
+        
 
 </head>
 <body class="claro">
@@ -60,10 +78,27 @@
 	<!-- build:[src]:CDN //ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js -->
     <script src="dojo/dojo.js"></script>
     <!-- /build -->
+	
+	 <div class="app">
+        <h1>Apache Cordova</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+        
+        <div id='log'>
+        </div>
 
-	<!-- Load the application. Note that this module ID is hard-coded in build.sh in order to provide
-	     an optimised build that loads as few as one script for the entire application. If you change the name or
-	     location of this module, you will need to update build.sh too. -->
+        <!-- login dialog -->
+        <div id='login_dialog' class='hidden'>
+          <label>JID:</label><input type='text' id='jid'>
+          <label>Password:</label><input type='password' id='password'>
+        </div>
+        
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+        
+	<!-- Load the application. -->
 	<script>require([ 'app/main' ]);</script>
 </body>
 </html>

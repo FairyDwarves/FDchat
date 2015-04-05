@@ -7,13 +7,20 @@
  * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
  * @imported CSS files into a single file.
  */
-@import '../../dojo/resources/dojo.css';
-@import '../../dijit/themes/claro/claro.css';
+if CDN
+  @import '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/resources/dojo.css';
+  @import '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css';
+else
+  @import '../../dojo/resources/dojo.css';
+  @import '../../dijit/themes/claro/claro.css';
 
 /**
  * If you want to use dgrid, you'll also want to include its CSS as well.
  */
-@import '../../dgrid/css/dgrid.css';
+if CDN
+  @import '//cdn.rawgit.com/SitePen/dgrid/v0.3.16/css/dgrid.css';
+else
+  @import '../../dgrid/css/dgrid.css';
 
 html,
 body {

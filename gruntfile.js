@@ -13,7 +13,11 @@ module.exports = function (grunt) {
 
         jshint: {
             all: [
-              'src/app/**/*.js'
+              'src/app/**/*.js',
+              '!src/app/**/flXHR.js',
+              '!src/app/**/strophe.flxhr.js',
+              '!src/app/**/swfobject.js',
+              '!src/app/**/hello.js'
             ],
             options: {
                 jshintrc: true
@@ -58,8 +62,8 @@ module.exports = function (grunt) {
             },
 
             source: {
-                files: ['./src/app/**/*.js'],
-                tasks: ['jshint']
+                files: ['./src/app/**/*.js','.src/app/**/*.styl'],
+                tasks: ['hint']
             },
             livereload: {
                 options: {
@@ -79,7 +83,7 @@ module.exports = function (grunt) {
             // clean useless file on production environment.
             final: ['www/**/*.consoleStripped.js', 'www/**/*.uncompressed.js', 'www/**/*.js.map', 'www/app/resources/*.styl', 'www/*.proc.html'],
             // clean bower packages
-            bower: ['src/dijit', 'src/dojo', 'src/dgrid', 'src/dojo-bootstrap', 'src/dojox', 'src/put-selector', 'src/util', 'src/xstyle', 'src/bootstrap', 'src/jquery'],
+            bower: ['src/dijit', 'src/dojo', 'src/dgrid', 'src/dojo-bootstrap', 'src/dojox', 'src/put-selector', 'src/util', 'src/xstyle', 'src/bootstrap', 'src/jquery', 'src/spinjs'],
         },
 
         //build dojo
@@ -112,11 +116,24 @@ module.exports = function (grunt) {
 
         //generate stylesheets
         stylus: {
-            compile: {
+            CDN: {
                 options: {
+                    define: {
+                        CDN: true
+                    }
                 },
                 files: {
-                    'www/app/resources/app.css': 'src/app/resources/app.styl',
+                    'src/app/resources/app.css': 'src/app/resources/app.styl',
+                }
+            },
+            local: {
+                options: {
+                    define: {
+                        CDN: false
+                    }
+                },
+                files: {
+                    'src/app/resources/app.css': 'src/app/resources/app.styl',
                 }
             }
         },
@@ -148,6 +165,20 @@ module.exports = function (grunt) {
             expand: true,
             cwd: 'src/bootstrap/dist',
             dest: 'www/bootstrap',
+            filter: 'isFile'
+          },
+          jquery: {
+            src: ['**/*'],
+            expand: true,
+            cwd: 'src/jquery/dist',
+            dest: 'www/jquery',
+            filter: 'isFile'
+          },
+          'jquery-ui': {
+            src: ['**/*'],
+            expand: true,
+            cwd: 'src/jquery',
+            dest: 'www/jquery',
             filter: 'isFile'
           },
           backupindex: {
@@ -249,9 +280,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-copy');
     grunt.loadNpmTasks('grunt-cordova-cli');
 
-    grunt.registerTask('hint', ['jshint']);
+    grunt.registerTask('hint', ['jshint', 'stylus:local']);
 
-    grunt.registerTask('build', ['jshint', 'clean:build', 'dojo', 'copy:bootstrap', 'stylus', 'processhtml:local', 'minifyHtml:local']);
+    grunt.registerTask('build', ['jshint', 'stylus:local', 'clean:build', 'dojo', 'copy:bootstrap', 'copy:jquery', 'copy:jquery-ui', 'processhtml:local', 'minifyHtml:local']);
 
     grunt.registerTask('deploy', 'Deploys the built application', function (origin) {
 
@@ -260,6 +291,7 @@ module.exports = function (grunt) {
         // do something useful with target here
 
         if (ori == 'src') {
+            grunt.task.run('stylus:CDN');
             grunt.task.run('processhtml:CDN');
             grunt.task.run('copy:backupindex');
             grunt.task.run('copy:procindex');

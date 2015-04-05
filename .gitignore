@@ -15,3 +15,9 @@ src/spinjs
 platforms
 www
 *~
+src/strophe
+src/strophe.disco
+src/strophe.muc
+src/strophe.roster
+src/strophe.vcard
+src/jquery-ui
