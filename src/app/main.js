@@ -22,7 +22,7 @@
  * More information about everything described about the loader throughout this file can be found at
  * <http://dojotoolkit.org/reference-guide/loader/amd.html>.
  */
-define([ './dialog/LoginDialog', './backend/FDclient', 'dojo/domReady!' ], function (LoginDialog, FDclient) {
+define([ 'dojo/_base/window', './dialog/LoginDialog', './dialog/ErrorDialog', './backend/FDrestSDK', 'dojo/domReady!' ], function (window, LoginDialog, ErrorDialog, FDrestSDK) {
 	var app = {
 	    // Application Constructor
 	    initialize: function() {
@@ -55,6 +55,7 @@ define([ './dialog/LoginDialog', './backend/FDclient', 'dojo/domReady!' ], funct
 	    }
 	};
 
+    //initializing app on device/browser
 	app.initialize();
 	
 	// Now that the app is loaded, we'll add an extra CSS class to the body to hide the loading message. Note that we
@@ -63,26 +64,45 @@ define([ './dialog/LoginDialog', './backend/FDclient', 'dojo/domReady!' ], funct
 	document.body.className += ' loaded';
 	
 	//Check our backend service availability
-	app.client = new FDclient();
-	app.client.isAvailable();
+    app.FDSDK = new FDrestSDK();
+    app.FDSDK.getLoadingBar().placeAt(window.body()).startup();
+    
+	var deferred = app.FDSDK.initialize();
 	
-	//Load this app online configuration
-	//TODO
+	    //TMP : display error message
+        app.dialog = new ErrorDialog().placeAt(document.body);
+        app.dialog.startup();
+        app.dialog.show();
 	
-	//Discover the chat service
-	//TODO
-	
-	//Display the LoginDialog //TODO : login into chat or into REST ??
-	
-	// Create a new instance of our custom Dijit dialog and place it in the DOM
-	////////app.dialog = new LoginDialog().placeAt(document.body);
+	// performing "callbacks" with the process:
+    deferred.then(function(value){
+        // Do something when the process completes
 
-	// It is important to remember to always call startup on widgets after you have added them to the DOM.
-	// It will not hurt if you do it twice, but things will often not work right if you forget to do it
-	////////app.dialog.startup();
+        app.FDSDK.getLoadingBar().destroy();
+	    //Display the LoginDialog //TODO : login into chat or into REST ??
+	
+	    // Create a new instance of our custom Dijit dialog and place it in the DOM
+	    ////////app.dialog = new LoginDialog().placeAt(document.body);
 
-	// And now we just show the dialog to demonstrate that, yes, the example app has loaded successfully
-	////////app.dialog.show();
+	    // It is important to remember to always call startup on widgets after you have added them to the DOM.
+	    // It will not hurt if you do it twice, but things will often not work right if you forget to do it
+	    ////////app.dialog.startup();
+
+	    // And now we just show the dialog to demonstrate that, yes, the example app has loaded successfully
+	    ////////app.dialog.show();
+            
+        
+        
+    }, function(err){
+        // Do something when the process errors out
+        
+        //TODO : display error message
+        app.dialog = new ErrorDialog().placeAt(document.body);
+        app.dialog.startup();
+        app.dialog.show();
+    });
+	
+
 	
 	
 	
