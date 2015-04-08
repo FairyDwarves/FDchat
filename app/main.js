@@ -24,10 +24,12 @@
  */
 define([ 'dojo/_base/declare',
     'dojo/_base/lang',
+    'dojo/dom',
+    'dojo/on',
     './ui',
     './backend/FDrestSDK',
     'dojo/domReady!',
-], function (declare, lang, UI, FDrestSDK) {
+], function (declare, lang, dom, on, UI, FDrestSDK) {
     return {
         _fdrestsdk: undefined,
         //access the FDrest SDK
@@ -49,36 +51,34 @@ define([ 'dojo/_base/declare',
         start: function() {
             this.bindEvents();
 
-            this.getAppUI().showLoading();
-            var initreq = this.getFDrestSDK().initialize();
+            on(dom.byId('connect'),'click',lang.hitch(this, function() {
 
-            // performing "callbacks" with the process:
-            initreq.then(lang.hitch(this, function(value){
-                // Do something when the process completes
+                // performing "callbacks" with the process:
+                this.getFDrestSDK().initialize().then(lang.hitch(this, function(value){
+                    // Do something when the process completes
 
-                this.getAppUI().hideLoading();
-                //Display the LoginDialog //TODO : login into chat or into REST ??
+                    //Display the LoginDialog //TODO : login into chat or into REST ??
 
-                // Create a new instance of our custom Dijit dialog and place it in the DOM
-                ////////app.dialog = new LoginDialog().placeAt(document.body);
+                    // Create a new instance of our custom Dijit dialog and place it in the DOM
+                    ////////app.dialog = new LoginDialog().placeAt(document.body);
 
-                // It is important to remember to always call startup on widgets after you have added them to the DOM.
-                // It will not hurt if you do it twice, but things will often not work right if you forget to do it
-                ////////app.dialog.startup();
+                    // It is important to remember to always call startup on widgets after you have added them to the DOM.
+                    // It will not hurt if you do it twice, but things will often not work right if you forget to do it
+                    ////////app.dialog.startup();
 
-                // And now we just show the dialog to demonstrate that, yes, the example app has loaded successfully
-                ////////app.dialog.show();
+                    // And now we just show the dialog to demonstrate that, yes, the example app has loaded successfully
+                    ////////app.dialog.show();
 
 
 
-            }), lang.hitch(this,function(err){
-                // Do something when the process errors out
+                }), lang.hitch(this,function(err){
+                    // Do something when the process errors out
 
-                //display error message
-                this.getAppUI().showError(err);
+                    //display error message
+                    this.getAppUI().showError(err);
 
-            }));// then hitch
-
+                }));// then hitch
+            }));// on hitch
 
 
             // Now that the app is loaded, we'll add an extra CSS class to the body to hide the loading message. Note that we
