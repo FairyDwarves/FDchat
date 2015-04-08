@@ -1,34 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Dojo Boilerplate CDN version</title>		
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">	
-	
-    
-	<link rel="stylesheet" href="app/resources/app.css">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
 
-</head>
-<body class="claro">
-	<!-- It's important to get something displayed to users as quickly as possible; here, we show a very basic loading
-	     screen, which becomes hidden once the application loads -->
-	<div class="loading">Loading…</div>
+    <script type="text/javascript" src="dojox/mobile/deviceTheme.js"></script>
 
-	<!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute
-	     on the `dojo.js` script tag, from a global dojoConfig object (shown here), or from a global `require` object.
+    <title>Hello World CDN version</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-	     Configuration options for the loader can be viewed at http://dojotoolkit.org/reference-guide/loader/amd.html
-	     along with a bunch of additional information about its features.
-     
-    <script type="text/javascript" src="app/dojoConfig.cdn.js"></script>	
-	<!-- other URL : //cdnjs.cloudflare.com/ajax/libs/dojo/1.10.4/dojo.js -->
+
+    <link rel="stylesheet" href="app/resources/app.css">
+
+<!--
+        <link rel="stylesheet" type="text/css" href="app/resources/index.css" />
+
+        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/cupertino/jquery-ui.css'>
+        <script src='jquery/dist/jquery.js'></script>
+        <script src='jquery-ui/jquery-ui.js'></script>
+        <script src='strophe/strophe.js'></script>
+        <script src='app/flXHR.js'></script>
+        <script src='app/strophe.flxhr.js'></script>
+
+        <script src='app/hello.js'></script>
+//-->
+
+
+    <!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute
+         on the `dojo.js` script tag, from a global dojoConfig object (shown here), or from a global `require` object.
+
+         Configuration options for the loader can be viewed at http://dojotoolkit.org/reference-guide/loader/amd.html
+         along with a bunch of additional information about its features.
+
+    <script type="text/javascript" src="app/dojoConfig.cdn.js"></script>
+    <!-- other URL : //cdnjs.cloudflare.com/ajax/libs/dojo/1.10.4/dojo.js -->
     <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
 
-	<!-- Load the application. Note that this module ID is hard-coded in build.sh in order to provide
-	     an optimised build that loads as few as one script for the entire application. If you change the name or
-	     location of this module, you will need to update build.sh too. -->
-	<script>require([ 'app/main' ]);</script>
+    <!-- build <script type="text/javascript" src="cordova.js"></script> /build -->
+
+</head>
+<body>
+    <!-- It's important to get something displayed to users as quickly as possible; here, we show a very basic loading
+         screen, which becomes hidden once the application loads -->
+    <div class="loading">Loading…</div>
+
+     <div class="cordova-device">
+        <h1>Apache Cordova</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+
+        <!-- login dialog -->
+        <!-- <div id='login_dialog' class='hidden'>
+          <label>JID:</label><input type='text' id='jid'>
+          <label>Password:</label><input type='password' id='password'>
+        </div>
+        //-->
+
+    </div>
+
+    <!-- Load the application. -->
+    <script>
+        require([ 'app/main' ], function(app){
+            app.start();
+        });
+    </script>
 </body>
 </html>
 .

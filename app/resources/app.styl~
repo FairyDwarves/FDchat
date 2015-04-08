@@ -8,8 +8,6 @@
  * @imported CSS files into a single file.
  */
 if CDN
-  @import '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/resources/dojo.css';
-  @import '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css';
 else
   @import '../../dojo/resources/dojo.css';
   @import '../../dijit/themes/claro/claro.css';
@@ -18,7 +16,6 @@ else
  * If you want to use dgrid, you'll also want to include its CSS as well.
  */
 if CDN
-  @import '//cdn.rawgit.com/SitePen/dgrid/v0.3.16/css/dgrid.css';
 else
   @import '../../dgrid/css/dgrid.css';
 

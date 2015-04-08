@@ -1,0 +1,14 @@
+<div class="dijitDialog appErrorDialog" role="dialog" aria-labelledby="${id}_title">
+    <div data-dojo-attach-point="titleBar" class="dijitDialogTitleBar">
+        <span data-dojo-attach-point="titleNode" class="dijitDialogTitle" id="${id}_title" role="heading" level="1"></span>
+    </div>
+    <div class="dijitDialogPaneContent">
+        <span class="dijitInline alertIcon"></span>
+        <div data-dojo-attach-point="containerNode">
+			        <div data-dojo-type="dijit/form/TextBox" title="Username:" name="username" value=""></div>
+        </div>
+    </div>
+    <div class="appDialogPaneButtons">
+        <button data-dojo-type="dijit/form/Button" type="button" role="button" data-dojo-attach-event="onClick: onClose">OK</button>
+    </div>
+</div>
