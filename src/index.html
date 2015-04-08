@@ -56,9 +56,9 @@
     <link rel="stylesheet" href="app/resources/app.css">
     <!-- /build -->
 
-<!--
-        <link rel="stylesheet" type="text/css" href="app/resources/index.css" />
+        <link rel="stylesheet" type="text/css" href="app/resources/cordova.css" />
 
+<!--
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/cupertino/jquery-ui.css'>
         <script src='jquery/dist/jquery.js'></script>
         <script src='jquery-ui/jquery-ui.js'></script>
@@ -94,34 +94,135 @@
 
     <!-- build <script type="text/javascript" src="cordova.js"></script> /build -->
 
+    <script>
+        require([
+            "dojox/mobile/parser",
+            "dojox/mobile/compat",
+            "app",
+            "dojox/mobile/View",
+            "dojox/mobile/ScrollableView",
+            "dojox/mobile/Heading",
+            "dojox/mobile/RoundRect",
+            "dojox/mobile/RoundRectCategory",
+            "dojox/mobile/RoundRectList",
+            "dojox/mobile/ExpandingTextArea",
+            "dojox/mobile/FormLayout",
+            "dojox/mobile/ListItem",
+            "dojox/mobile/ToggleButton",
+            "dojox/mobile/Switch",
+            "dojo/domReady!"
+        ], function (parser, compat, app) {
+            // now parse the page for widgets
+            parser.parse();
+            // Load the application
+            app.start();
+        });
+    </script>
+
 </head>
-<body>
+<body style="visibility:hidden;">
     <!-- It's important to get something displayed to users as quickly as possible; here, we show a very basic loading
          screen, which becomes hidden once the application loads -->
     <div class="loading">Loading…</div>
 
+    <!-- build:template
+    <% if (environment != 'CDN') { %>
      <div class="cordova-device">
         <h1>Apache Cordova</h1>
         <div id="deviceready" class="blink">
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
         </div>
+    </div>
+    <% } %>
+    /build -->
 
-        <!-- login dialog -->
-        <!-- <div id='login_dialog' class='hidden'>
-          <label>JID:</label><input type='text' id='jid'>
-          <label>Password:</label><input type='password' id='password'>
-        </div>
-        //-->
 
+    <!-- the view or "page"; select it as the "home" screen -->
+    <div id="home" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
+        <!-- a sample heading -->
+        <h1 data-dojo-type="dojox/mobile/Heading">Home</h1>
+
+
+
+        <!-- a rounded rectangle list container -->
+        <ul data-dojo-type="dojox/mobile/RoundRectList">
+            <!-- list item with an icon containing a switch -->
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-1.png', moveTo:'backend'">Connect to REST backend</li>
+            <!-- list item with an icon that slides this view away and then loads another page -->
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-2.png', rightText:'mac', moveTo:'settings'">Settings</li>
+            <!-- list item with an icon that slides to a view called "general" -->
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', rightText:'AcmePhone', moveTo:'about'">About</li>
+        </ul>
     </div>
 
-    <!-- Load the application. -->
-    <script>
-        require([ 'app/main' ], function(app){
-            app.start();
-        });
-    </script>
+    <!-- The "Rest Backend" sub-page -->
+    <div id="backend" data-dojo-type="dojox/mobile/ScrollableView">
+        <!-- a sample heading -->
+        <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'Home', moveTo:'home'">Backend</h1>
+        <div data-dojo-type="dojox/mobile/RoundRect">
+            <label for='init-progress'>Initialization</label>
+            <div id='init-progress' data-dojo-type="dojox/mobile/ProgressBar" data-dojo-props='value:"30%", label:"30/100"'></div>
+        </div>
+
+        <!-- subheading -->
+        <h2 data-dojo-type="dojox/mobile/RoundRectCategory">Available Services</h2>
+        <!-- TODO : display list of actully discovered services -->
+        <!-- a rounded rectangle list container for services-->
+        <ul data-dojo-type="dojox/mobile/RoundRectList">
+            <!-- list item with a service : Login -->
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-1.png', moveTo:'backend-login'">Login</li>
+            <!-- list item with a service -->
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-2.png'">Service 2</li>
+            <!-- list item with a service -->
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png'">Service 3</li>
+        </ul>
+    </div>
+
+    <!-- The "Rest Backend Login" sub-page -->
+    <div id="backend-login" data-dojo-type="dojox/mobile/View">
+        <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'Backend', moveTo:'backend'">Login</h1>
+        <div data-dojo-type="dojox/mobile/RoundRect">
+            <div id='login-form' data-dojo-type="dojox/mobile/FormLayout" data-dojo-props="columns:'two'">
+                <label for='userinput'>Username :</label>
+                <fieldset>
+                    <input id='userinput' type="text" data-dojo-type="dojox/mobile/TextBox" placeHolder="username" />
+                </fieldset>
+                <label for='passwdinput'>Password :</label>
+                <fieldset>
+                    <input id='passwdinput' type="text" data-dojo-type="dojox/mobile/TextBox" placeHolder="password" />
+                </fieldset>
+                <button data-dojo-type="dojox/mobile/Button" data-dojo-props='label:"Login"'></button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The "Settings" sub-page -->
+    <div id="settings" data-dojo-type="dojox/mobile/View">
+        <!-- a sample heading -->
+        <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'Home', moveTo:'home'">Settings View</h1>
+        <!-- a rounded rectangle list container -->
+        <ul data-dojo-type="dojox/mobile/RoundRectList">
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="moveTo:'about'">About</li>
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'2h 40m', moveTo:'about'">Usage</li>
+        </ul>
+    </div>
+
+    <!-- And let's add another view "About" -->
+    <div id="about" data-dojo-type="dojox/mobile/View">
+        <!-- Main view heading -->
+        <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'Home', moveTo:'home'">About</h1>
+        <!-- subheading -->
+        <h2 data-dojo-type="dojox/mobile/RoundRectCategory">Generic Mobile Device</h2>
+        <!-- a rounded rectangle list container -->
+        <ul data-dojo-type="dojox/mobile/RoundRectList">
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'AcmePhone'">Network</li>
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'AcmePhone'">Line</li>
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'1024'">Songs</li>
+            <li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'10'">Videos</li>
+        </ul>
+    </div>
+
 </body>
 </html>
-..
