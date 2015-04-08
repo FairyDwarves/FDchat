@@ -12,7 +12,7 @@ var dojoConfig = {
             // Using a string as a package is shorthand for `{ name: 'app', location: 'app' }`
             {
                 name: 'app',
-                location: 'app/main'
+                location: 'app'
             }, {
                 name: 'dijit',
                 location: '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit'
