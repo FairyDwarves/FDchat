@@ -97,5 +97,10 @@
     "globals"       : { // ** `false` = don't allow variable to be redefined locally
         "define": false,
         "require": false
-    }
+    },
+
+    // this is especially useful to tolerate trailing commas
+    //"es5"            : true, //default in jshint > 2.0.0
+    "es3"              : false
+
 }
