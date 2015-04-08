@@ -51,7 +51,7 @@ define([ 'dojo/_base/declare',
         start: function() {
             this.bindEvents();
 
-            on(dom.byId('connect'),'click',lang.hitch(this, function() {
+            on(dom.byId('connect'),'click, touchend',lang.hitch(this, function() {
 
                 // performing "callbacks" with the process:
                 this.getFDrestSDK().initialize().then(lang.hitch(this, function(value){

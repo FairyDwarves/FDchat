@@ -10,8 +10,10 @@ var dojoConfig = {
         // build profile in `app.profile.js`.
         packages: [
             // Using a string as a package is shorthand for `{ name: 'app', location: 'app' }`
-            'app',
             {
+                name: 'app',
+                location: 'app'
+            }, {
                 name: 'dijit',
                 location: '//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit'
             }, {
@@ -34,6 +36,7 @@ var dojoConfig = {
                 location: '//rawgit.com/xsokev/Dojo-Bootstrap/master'
             }
         ],
+
         // Use the smaller, faster "lite" CSS selector engine, which works in all browsers IE8+
         selectorEngine: 'lite',
         // Fix the loader to use normal AMD resolution of unregistered module paths (relative to `baseUrl`)
