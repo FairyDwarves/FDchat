@@ -1,13 +1,14 @@
 define([ 'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/window',
+    'dojo/on',
     'dojo/dom-construct',
     'dojox/mobile/ProgressIndicator',
     'dojox/mobile/Overlay',
     'dojox/mobile/SimpleDialog',
-    'dojox/mobile/SimpleDialog',
+    'dojox/mobile/Button',
     'dojo/domReady!',
-], function (declare, lang, window, domConstruct, ProgressIndicator, Overlay, SimpleDialog, Button) {
+], function (declare, lang, window, on, domConstruct, ProgressIndicator, Overlay, SimpleDialog, Button) {
     return declare(null, {
         _errorUI: undefined,
         hideError: function(){
@@ -22,7 +23,7 @@ define([ 'dojo/_base/declare',
                 window.body().appendChild(this._errorUI.domNode);
                 domConstruct.create('div', {class: 'mblSimpleDialogText', innerHTML: errmsg}, this._errorUI.domNode);
                 var closeBtn = new Button({class: 'mblSimpleDialogButton mblRedButton', innerHTML: 'Close'});
-                closeBtn.connect(closeBtn.domNode, 'click', lang.hitch(this, function(e){
+                on(closeBtn, 'click', lang.hitch(this, function(e){
                     this.hideError();
                 }));
                 closeBtn.placeAt(this._errorUI.domNode);
