@@ -14,7 +14,16 @@
     <meta http-equiv="pragma" content="no-cache">
     <!-- /build -->
 
+    <!-- build:template
+    <% if (environment === 'CDN') { %>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojox/mobile/deviceTheme.js"></script>
+    <% } else { %>
     <script type="text/javascript" src="dojox/mobile/deviceTheme.js"></script>
+    <% } %>
+    /build -->
+    <!-- build:remove -->
+    <script type="text/javascript" src="dojox/mobile/deviceTheme.js"></script>
+    <!-- /build -->
 
     <!-- build:template
     <% if (environment === 'CDN') { %>
@@ -24,7 +33,7 @@
     <% } %>
     /build -->
     <!-- build:remove -->
-    <title>Hello World</title>
+    <title>Hello World Debug</title>
     <!-- /build -->
 
     <!-- build:template
@@ -115,3 +124,4 @@
     </script>
 </body>
 </html>
+..
