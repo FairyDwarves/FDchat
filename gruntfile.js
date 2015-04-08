@@ -217,52 +217,58 @@ module.exports = function (grunt) {
 
         //build mobile app with cordova
         cordova_cli: {
-            'add-android': {
-                cmd: 'add',
-                plugins: ['platform'],
-                platforms: ['android']
-            },
-            'add-ios': {
-                cmd: 'add',
-                plugins: ['platform'],
-                platforms: ['ios']
-            },
-            'add-browser': {
-                cmd: 'add',
-                plugins: ['platform'],
-                platforms: ['ios']
-            },
             'build-android': {
-                cmd: 'build',
-                options: '--debug',
-                platforms: ['android']
+                options : {
+                    cmd: 'build',
+                    options: '--debug',
+                    platforms: ['android']
+                }
             },
             'build-ios': {
-                cmd: 'build',
-                options: '--debug',
-                platforms: ['ios']
+                options : {
+                    cmd: 'build',
+                    options: '--debug',
+                    platforms: ['ios']
+                }
             },
             'build-browser': {
-                cmd: 'build',
-                options: '--debug',
-                platforms: ['ios']
+                options : {
+                    cmd: 'build',
+                    options: '--debug',
+                    platforms: ['ios']
+                }
             },
             'build-android-release': {
-                cmd: 'build',
-                options: '--release',
-                platforms: ['android']
+                options : {
+                    cmd: 'build',
+                    options: '--release',
+                    platforms: ['android']
+                }
             },
             'build-ios-release': {
-                cmd: 'build',
-                options: '--release',
-                platforms: ['ios']
+                options : {
+                    cmd: 'build',
+                    options: '--release',
+                    platforms: ['ios']
+                }
             },
             'build-browser-release': {
-                cmd: 'build',
-                options: '--release',
-                platforms: ['ios']
+                options : {
+                    cmd: 'build',
+                    options: '--release',
+                    platforms: ['ios']
+                }
             },
-        }
+        },
+
+        //cordova NG
+        cordova: {
+            options: {
+                platforms: 'android',
+                build: 'debug'
+            }
+        },
+
 
     });
 
@@ -279,6 +285,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-minify-html');
     grunt.loadNpmTasks('grunt-copy');
     grunt.loadNpmTasks('grunt-cordova-cli');
+    grunt.loadNpmTasks('grunt-cordova-ng');
 
     grunt.registerTask('hint', ['jshint', 'stylus:local']);
 
@@ -300,15 +307,17 @@ module.exports = function (grunt) {
         }
         else if (ori == 'build' || ori == 'www') {
             grunt.task.run('build');
-            grunt.task.run('clean:finalize');
+            grunt.task.run('clean:final');
 
             if (target == 'browser') {
                 grunt.task.run('cordova_cli:add-browser');
                 grunt.task.run('cordova_cli:build-browser');
             }
             else if (target == 'android') {
-                grunt.task.run('cordova_cli:add-android');
-                grunt.task.run('cordova_cli:build-android');
+                if ( ! grunt.file.exists('platforms/android') ) {
+                    grunt.task.run('cordova:platform:add:android');
+                }
+                grunt.task.run('cordova:build:android');
             }
             else if (target == 'ios') {
                 grunt.task.run('cordova_cli:add-ios');

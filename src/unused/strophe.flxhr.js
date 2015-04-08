@@ -1,3 +1,5 @@
+//>>excludeStart("unused")
+
 /* flXHR plugin
 **
 ** This plugin implements cross-domain XmlHttpRequests via an invisible
@@ -29,3 +31,4 @@ Strophe.addConnectionPlugin('flxhr', {
         }
     }
 });
+//>>excludeEnd("unused")

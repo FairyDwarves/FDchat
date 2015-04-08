@@ -48,7 +48,7 @@ define([ 'dojo/_base/declare',
         // Application Starter
         start: function() {
             this.bindEvents();
-
+/*
             this.getAppUI().showLoading();
             var initreq = this.getFDrestSDK().initialize();
 
@@ -79,7 +79,7 @@ define([ 'dojo/_base/declare',
 
             }));// then hitch
 
-
+*/
 
             // Now that the app is loaded, we'll add an extra CSS class to the body to hide the loading message. Note that we
             // could also have used `dojo/dom-class` to do this, but for very simple one-off operations like these there is

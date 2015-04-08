@@ -157,12 +157,12 @@
     </div>
 
     <!-- The "Rest Backend" sub-page -->
-    <div id="backend" data-dojo-type="dojox/mobile/ScrollableView">
+    <div id="backend" data-dojo-type="dojox/mobile/View">
         <!-- a sample heading -->
         <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'Home', moveTo:'home'">Backend</h1>
         <div data-dojo-type="dojox/mobile/RoundRect">
             <label for='init-progress'>Initialization</label>
-            <div id='init-progress' data-dojo-type="dojox/mobile/ProgressBar" data-dojo-props='value:"30%", label:"30/100"'></div>
+            <div id='init-progress' data-dojo-type="dojox/mobile/ProgressBar" data-dojo-props="value:'30%', label:'30/100'"></div>
         </div>
 
         <!-- subheading -->
@@ -192,7 +192,7 @@
                 <fieldset>
                     <input id='passwdinput' type="text" data-dojo-type="dojox/mobile/TextBox" placeHolder="password" />
                 </fieldset>
-                <button data-dojo-type="dojox/mobile/Button" data-dojo-props='label:"Login"'></button>
+                <button data-dojo-type="dojox/mobile/Button" data-dojo-props="label:'Login'"></button>
             </div>
         </div>
     </div>

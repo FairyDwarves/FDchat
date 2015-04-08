@@ -43,14 +43,16 @@
     "grunt-contrib-stylus": "~0.21.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-copy": "^0.1.0",
-    "grunt-cordova-cli": "~0.1.0",
+    "grunt-cordova-cli": "^0.1.0",
+    "grunt-cordova-ng": "^0.2.4",
     "grunt-dojo": "~0.2.0",
     "grunt-gh-pages": "^0.9.1",
     "grunt-minify-html": "~2.0.0",
     "grunt-open": "~0.2.3",
     "grunt-processhtml": "^0.3.7",
     "intern": "~2.0.3",
-    "stylus": "~0.48.1"
+    "stylus": "~0.48.1",
+    "uglify-js": "^2.4.19"
   },
   "engines": {
     "node": ">=0.8.0"

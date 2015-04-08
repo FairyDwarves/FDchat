@@ -1,5 +1,5 @@
 {
-	"name": "app",
-	"version": "1.10.0",
-	"dojoBuild": "package.js"
+    "name": "app",
+    "version": "0.0.1",
+    "dojoBuild": "package.js"
 }
